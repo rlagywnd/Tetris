@@ -71,12 +71,8 @@ public class GameManager : MonoBehaviour
 
     void DownBlock()
     {
-        while (true)
+        while (!(CheckGround(currentBlock.Min) || !IsBlockBelow(currentBlock.transform)))
         {
-            if(CheckGround(currentBlock.Min) || !IsBlockBelow(currentBlock.transform))
-            {
-                break;
-            }
             MoveBlock(Vector2.down);
         }
         CheckManager();
@@ -91,12 +87,8 @@ public class GameManager : MonoBehaviour
         Vector2 pos = currentBlock.transform.position; 
 
         currentBlock.shadowObj.position = pos; 
-        while (true)
-        { 
-            if(CheckGround(currentBlock.ShadowMin) || !IsBlockBelow(currentBlock.shadowObj))
-            {
-                break;
-            }
+        while (!(CheckGround(currentBlock.ShadowMin) || !IsBlockBelow(currentBlock.shadowObj)))
+        {  
             currentBlock.ShadowBlockMove();
         }
 
